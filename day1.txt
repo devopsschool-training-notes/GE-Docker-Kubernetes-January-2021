@@ -291,7 +291,8 @@ Base Image + JAVA + TOMCAT + Jenkins == JENKINS
    75  docker ps -a
    76  history
 
-----------
+Assignment for everyone
+----------------------------------------
 PAUSE Vs UNPAUSE 
 STOP Vs KILL 
 ----------
@@ -322,6 +323,87 @@ Abhijit Roy
 Ananth P M
 Pranjal Thakuria
 Priyanka Sharma
+
+==================================================================
+Lets Prove
+---------------------------------
+Docker Container
+	When you RUN docker image with a help of client
+	HUman -> Client -> Deamon -> ContainerD -> Kernal
+		
+	Kernal create ONE USER
+		SAME USER - THEY MOUNT WITH a FILESYTEM of IMAGE
+		SAME USER - They create one new network and Attached to the USER
+		SAME USER - They create one PID and attached to the USER...
+	
+	THE USER ==== Container.
+
+  79  ps
+   80  ps -eaf | grep 8560
+   81  ps -eaf | grep 8558
+   82  ps -eaf | grep 8537
+   83  ps -eaf | grep 8536
+   84  ps -eaf | grep 8536
+   85  ps -eaf | grep 8533
+   86  clear
+   87  ps -eaf | grep 8533
+   88  ps -eaf | grep 1212
+   89  ps -eaf
+   90  clear
+   91  ls
+   92  ps -eaf | grep docker
+   93  docker ps
+   94  ps -eaf | grep containerd
+   95  docker ps -a
+   96  docker create jenkins/jenkins
+   97  docker start 2356ea445f0c1a136d33fb6ce0b141084cc6cd274e2fb02774dc081cada2da58
+   98  clear
+   99  docker ps -a
+  100  ps -eaf | grep containerd
+  101  clear
+  102  docker ps
+  103  docker exec -it 2356ea445f0c /bin/bash
+  104  df -kh
+  105  ps -eaf
+  106  ip a
+  107  clear
+  108  ls
+  109  docker ps
+  110  docker exec 2356ea445f0c ps -eaf
+  111  docker exec f54fab595e0d ps -eaf
+  112  docker exec 2356ea445f0c df -k
+  113  docker exec f54fab595e0d df -kh
+  114  clear
+  115  docker ps
+  116  docker exec 2356ea445f0c ls /opt
+  117  docker exec 2356ea445f0c touch /opt/devopsschool.txt
+  118  docker exec 2356ea445f0c touch /tmp/devopsschool.txt
+  119  docker exec 2356ea445f0c ls /tmp
+  120  docker exec f54fab595e0d ls /tmp
+  121  docker ps
+  122  clear
+  123  docker ps
+  124  docker inspect 2356ea445f0c | grep -i ip
+  125  docker inspect f54fab595e0d | grep -i ip
+  126  ping 172.17.0.2
+  127  ping 172.17.0.3
+  128  clear
+  129  docker ps
+  130  docker exec 2356ea445f0c ps -eaf
+  131  ps -eaf
+  132  clear
+  133  history
+
+
+
+
+
+
+
+
+
+
+
 
 
 
