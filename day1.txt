@@ -1,0 +1,327 @@
+1234567890
+===========================
+Rajesh Kumar
+===========================
+Docker  - 2 Days	Essential -> Intermediate
+Kubernetes - 3 Days	Essential -> Intermediate
+===========================
+Start - 9 AM IST
+End - 5 PM IST
+---------------------------
+Lunch Break - 1 PM - 2 PM IST
+SMALL BREAK - 
+		15 mins. 11 & 3.30
+=========================================
+Demo + Lab = AWS
+=========================================
+devopsschool.com/slides
+-----------------------------------------
+What is Docker?
+	Container Based Tech.
+	Container mgmt tool
+	Release
+		Community 	devopsschool blog
+		Enterprise	devopsschool blog
+	Written in Golang
+	By Soloman Hykes
+	2014*
+	version - 20X
+
+	Tool
+		Save Time
+		Save Cost
+		Improve Quality+Eff*
+		---------------------
+		- To run APPS (Software) but where (Data center)
+
+	What is Container?
+	-----------------------------------------------------------------
+	is a fully independent run time app env.
+	
+	USER from USER NS
+		with dedicated
+			NET by NET NS
+			MNT by MNT NS
+			PID by PID NS
+				with a help of docker..
+						docker takes it from KERNAL
+==========================================================
+How a APP/Soft Run in the SYSTEM?
+What are the resources needed for the running a APP?
+==========================================================
+Hardware
+	OS
+	     Kernal (Types)
+		 Namespace		NEED		ALLOWED		CAN CREATE
+			USER		1		MUL		MUL			
+			PID		1		1		MUL				
+			MNT		1		1		MUL				
+			NET		1		1		MUL				
+		
+		CGROUP -- Allocates CPU + RAM to process using PID		
+		Capabilities - ROOT or not root
+Kernal 
+The kernel is a computer program at the core of a computer's operating system that has complete control over everything in the system. 
+========================================================================
+How we were running app?
+=========================================================================
+Before 2000 	Internet |After 2000		2021
+=========================================================================
+PHYSICAL SER		Virtualization SER	Container		
+
+
+PC
+============
+Personal Computing
+	== YOUR PERSONAL COM DEV
+
+============================================================
+MNT === FILESYSTEM
+FILESYSTEM
+	Collections of Files+Direc for Specific Purpose.
+
+TYPES of filesystem
+----------------------
+BOOT filesystem == KERNAL filesystem  
+ROOT filesystem == Flavour
+				ubuntu
+				rhel
+				centos
+				suse
+USER filesystem
+APP filesystem
+===============================================================
+OS contains
+	BOOT + ROOT + USER + APP
+	-------------------------
+		OS Image
+
+Container contains
+	ROOT + USER + APP
+	-----------------
+	   Docker Image
+=============================================================
+Phase 2 
+----------------
+What is Docker?
+What is Container?
+Docker Architecture
+Docker Components
+Docker Workflow
+Docker Installation
+Container LifeCycle
+-----------------------------
+Docker Architecture
+------------------------------
+HUMAN -> DOCKER CLIENT ---- REST API-> Docker Deamon(Server) --> ContainerD --> Kernal
+         ==================================================
+			Docker
+			AKA
+			Docker Engine
+
+Docker Components
+------------------
+Docker Engine - DONE
+
+Docker Registry
+	Contain
+		Respository = Named as a Docker Image
+		contain
+			version of filesystem(s)
+			such as 
+				ROOT filesystem = centos - ubuntu - rhel
+				ROOT filesystem + APPS = jenkins - tomcat
+
+	Public	
+		hub.doker.com
+	PVT 
+		artifactory
+		nexus
+
+
+Docker Image
+ 	Contains FILESYSTEM(S)
+	ROOT FS				= centos, ubuntu
+	ROOT FS + JAVA + TOMCAT		= centos + java + tomcat
+	ROOT FS + JAVA + TOMCAT + APP	= centos + java + tomcat + jenkins
+
+Docker Container
+	When you RUN docker image with a help of client
+	HUman -> Client -> Deamon -> ContainerD -> Kernal
+		
+	Kernal create ONE USER
+		SAME USER - THEY MOUNT WITH a FILESYTEM of IMAGE
+		SAME USER - They create one new network and Attached to the USER
+		SAME USER - They create one PID and attached to the USER...
+	
+	THE USER ==== Container.
+
+=====================
+Docker Workflow
+------------------------------
+Human --> Client --> Server
+			CHECK iF IMAGE EXIST IN LOCAL REGISTRY
+			- YES ---> COntainerD ---> KERNAL
+
+			- NO - First Download image from HUB and ---> COntainerD ---> KERNAL
+
+====================================================================
+Container LifeCycle
+====================================================================
+Human Lifecycle
+BORN -> KID -> TEEN -> YOUNG -> MID -> OLD -> DIE
+-------------------
+
+VMs Lifecycle
+-------------------------------------------
+Create -> Start -> STOP -> START -> RESTART -> PAUSE -> UNPAUSE -> KILL -> Remove
+
+Container LifeCycle
+====================================================================
+-------------------------------------------
+Create -> Start -> STOP -> START -> RESTART -> PAUSE -> UNPAUSE -> KILL -> Remove
+
+
+Docker Installation
+=================================
+IP - 52.66.28.121
+UserName - centos
+Key - 
+===================
+DOCKER COMMANDS ALSO NEED ROOT ACCESS
+or
+USER must be a part of linux group called "docker"
+
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+sudo -s
+[root@ip-172-31-23-4 centos]# history
+    1  clear
+    2  sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    3  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    4  sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    5  sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    6  sudo yum install -y docker-ce
+    7  sudo yum install docker-ce
+    8  docker -v
+    9  sudo systemctl enable docker
+   10  sudo systemctl start docker
+   11  clear
+   12  docker info
+   13  clear
+   14  ls
+   15  which docker
+   16  ps -eaf | grep docker
+   17  which containerd
+   18  docker version
+   19  c
+   20  clear
+   21  docker help
+   22  history
+-------------------------------------
+Container LifeCycle
+====================================================================
+-------------------------------------------
+Create -> Start -> STOP -> START -> RESTART -> PAUSE -> UNPAUSE -> KILL -> Remove
+
+
+jenkins
+	- WEB BASED
+	- 8080 
+	- NEED JAVA
+
+Base Image + JAVA + Jenkins == JENKINS
+Base Image + JAVA + TOMCAT + Jenkins == JENKINS
+
+
+
+   22  history
+   23  docker info
+   24  clear
+   25  docker images
+   26  docker pull jenkins/jenkins
+   27  clear
+   28  docker images
+   29  docker ps
+   30  docker ps -a
+   31  docker images
+   32  docker create jenkins/jenkins
+   33  docker ps
+   34  docker ps -a
+   35  docker create --name jenkin1 jenkins/jenkins
+   36  docker ps -a
+   37  clear
+   38  docker ps -a
+   39  clear
+   40  docker ps -a
+   41  docker create --name jenkin1 jenkins/jenkins
+   42  docker ps -a
+   43  docker start b0c13aefa37e
+   44  docker ps -a
+   45  docker create ---name jenkins2 jenkins/jenkins
+   46  docker create --name jenkins2 jenkins/jenkins
+   47  clear
+   48  docker ps -a
+   49  docker start f54fab595e0d
+   50  clear
+   51  docker ps
+   52  docker ps -a
+   53  clear
+   54  docker ps -a
+   55  docker stop jenkin1
+   56  docker ps -a
+   57  docker start b0c13aefa37e
+   58  docker ps -a
+   59  docker restart f54fab595e0d
+   60  clear
+   61  docker ps -a
+   62  docker pause f54fab595e0d
+   63  docker ps -a
+   64  docker unpause f54fab595e0d
+   65  docker ps -a
+   66  docker kill 4fd4105aefae
+   67  docker kill b0c13aefa37e
+   68  docker ps -a
+   69  clear
+   70  docker ps
+   71  docker ps -a
+   72  docker rm f54fab595e0d
+   73  docker rm 4fd4105aefae
+   74  docker rm b0c13aefa37e
+   75  docker ps -a
+   76  history
+
+----------
+PAUSE Vs UNPAUSE 
+STOP Vs KILL 
+----------
+
+
+13.233.115.119	centos/centos123
+---------------------------------
+Jayaprasad Rao K
+Kumar Shreyash
+Alwin Doss
+chennakeshava.s
+Divya Ganesan
+
+
+65.0.183.40	centos/centos123
+---------------------------------
+Vinay Kumar
+Lal Kumar Koduri
+Ajith Krishna R
+Bhargav B
+ShijiVenugopal
+
+13.233.14.77	centos/centos123
+---------------------------------
+ATUL GUPTA
+Indhushree K
+Abhijit Roy
+Ananth P M
+Pranjal Thakuria
+Priyanka Sharma
+
+
+
