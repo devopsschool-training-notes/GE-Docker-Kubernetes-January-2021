@@ -133,6 +133,220 @@ update	Update configuration of one or more containers
 wait	Block until one or more containers stop, then print their exit codes
 
 
+ 125  docker stop $(docker ps -a -q)
+  126  docker rm $(docker ps -a -q)
+  127  clear
+  128  docker ps
+  129  docker images
+  130  docker inspect jenkins/jenkins
+  131  clear
+  132  ;ls
+  133  docker images
+  134  docker history jenkins/jenkins
+  135  clear
+  136  docker run -d jenkins/jenkins
+  137  docker ps
+  138  df -kh
+  139  cd /var/lib/docker/overlay2/01ef6d0be138e34e77da4343c5a5ba1c41e7d73946d832c38c370cb96fb4b260/merged
+  140  ls
+  141  docker run -d jenkins/jenkins
+  142  df -kh
+  143  clear
+  144  docker inspect jenkins/jenkins
+  145  df -kh
+  146  clear
+  147  docker ps
+  148  df -kh
+  149  docker stop a5ff2f90c497
+  150  df -kh
+  151  docker start a5ff2f90c497
+  152  df -kh
+  153  docker stop a5ff2f90c497
+  154  docker start a5ff2f90c497
+  155  clear
+
+[root@ip-172-31-15-202 docker]# ls -1
+buildkit
+containers		= Meta Data of the container
+image			= Meta Data of the Image
+network			= Network Object
+overlay2		= This contains all the Data Layers	
+plugins
+runtimes
+swarm
+tmp
+trust
+volumes			= Volume
+[root@ip-172-31-15-202 docker]#
+========================================================================
+
+  155  clear
+  156  history
+  157  docker stop $(docker ps -a -q)
+  158  clear
+  159  docker rm $(docker ps -a -q)
+  160  docker ps -a
+  161  docker images
+  162  docker rmi jenkins/jenkins centos ubuntu
+  163  clear
+  164  pwd
+  165  ls
+  166  docker info
+  167  clear
+  168  cd /var/lib/docker
+  169  clear
+  170  l
+  171  ls
+  172  ls -1
+  173  clear
+  174  ls
+  175  cd overlay2
+  176  ls
+  177  du -sh
+  178  docker pull ubuntu
+  179  ls
+  180  docker history ubuntu
+  181  clear
+  182  ls
+  183  docker history ubuntu
+  184  clear
+  185  ls
+  186  du -h --max-depth=0
+  187  du -kh --max-depth=0
+  188  du -k --max-depth=0
+  189  du -h --max-depth=1
+  190  clear
+  191  ls
+  192  cd ./fc8d090434ccc5030c316f19a7755fe1cec9a626e90276451c892edc19b0023d
+  193  ls
+  194  cd diff
+  195  ls
+  196  cd ../..
+  197  clear
+  198  ls
+  199  docker run -itd ubuntu
+  200  docker ps
+  201  df -kh
+  202  clear
+  203  ls
+  204  du -sh fbdf4821baee68ba45e48b7491fa7b4761311eb9e65d930e68b5c11572103d94-init
+  205  du -sh fbdf4821baee68ba45e48b7491fa7b4761311eb9e65d930e68b5c11572103d94
+  206  df -kh
+  207  docker run -itd ubuntu
+  208  ls
+  209  clear
+  210  ls
+  211  cd b3832b67e18ca6bfac56025810f10446fd88e558267200708d0f4a3bc0c522c8
+  212  clear
+  213  ls
+  214  cd diff
+  215  ls
+  216  cd ..
+  217  ls
+  218  cd merged/
+  219  ls
+  220  df -kh
+  221  clear
+  222  ls
+  223  cd ..
+  224  ls
+  225  docker ps
+  226  docker exec 9b2d4539501b touch /opt/devopsschool.com
+  227  cd ..
+  228  ls
+  229  clear
+  230  ls
+  231  find . -name devopsschool.com
+  232  cd ./b3832b67e18ca6bfac56025810f10446fd88e558267200708d0f4a3bc0c522c8
+  233  clear
+  234  lsa
+  235  ls
+  236  cd merged
+  237  clear
+  238  ls
+  239  cd opt/
+  240  ls
+  241  cd ..
+  242  cd ..
+  243  clear
+  244  ls
+  245  cd diff/
+  246  ls
+  247  cd opt/op
+  248  cd opt/
+  249  ls
+  250  clear
+  251  ls
+  252   cd ..
+  253  ls
+  254  cd ..
+  255  ls
+  256  clear
+  257  ls
+  258  docker ps
+  259  pwd
+  260  ls
+  261  docker stop 9b2d4539501b
+  262  ls
+  263  docker start 9b2d4539501b
+  264  ls
+  265  docker stop 9b2d4539501b
+  266  ls
+  267  ls diff/
+  268  clear
+  269  ls
+  270  docker start 9b2d4539501b
+  271  ls
+  272  cd merged/opt/
+  273  ls
+  274  clear
+  275  ls
+  276  cd ..
+  277  ls
+  278  cd ..
+  279  ls
+  280  cd .
+  281  cd ..
+  282  ls
+  283  history
+=========================================================================
+- Image contains Multiple file system.
+- Each file system is layered over each other so we call it - Layer
+- Base layer is Root filesystem and on top of it -- APP and depe lib.
+- When you create a container - All layers is getting merged into one Additional layer.
+- All layers of Image is Read only. Additional layer is RW.
+- All this things is done UNION MOUNTS
+
+- Container Layer is primarily divided into 2 
+		- merged = Containes all layers of the image
+		- diff	 = COntains all the changes done in the Container.
+- When we stop a container - merged layer get disappeared.
+- When we start a container - Layers of image + Diff dir get merged into merged dir.
+===================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
