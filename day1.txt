@@ -393,6 +393,171 @@ Docker Container
   131  ps -eaf
   132  clear
   133  history
+=============================================================================
+=============================================================================
+RUN
+-----------------------------------
+pull -> create --> start --> BECOME or Attached to the container.
+
+
+RUN -d
+-----------------------------------
+pull -> create --> start --> DO NOT BECOME or DO NOT Attached to the container.
+
+PHYSCIAL Ser is running		Virtual Server is running		Container is running	
+PID1 is running			PID1 is running				Coz of PID1 is running
+
+PID1 == SYSTEMD			PID1 == SYSTEMD				PID1 can be anything
+									- java
+									- bash
+									- perl
+									-/bin/tini
+									- a b c
+
+How to use Containers?
+======================
+How to get inside a container?
+- exec
+	using exec, you can execute any executables inside a container
+	When you exec of /bin/bash with -it - you can inside a container.
+
+- attach
+	using attach commands - you can BECOME or attached to the container
+	You attached to PID1
+ 
+How to access a container from outside?
+
+
+
+
+
+
+
+ 133  history
+  134  clear
+  135  ps
+  136  clear
+  137  docker images
+  138  docker run jenkins/jenkins
+  139  clear
+  140  docker ps
+  141  docker run -d jenkins/jenkins
+  142  docker run -d jenkins/jenkins
+  143  docker ps
+  144  clear
+  145  docker ps
+  146  docker stop 12da11490416 2356ea445f0c f54fab595e0d
+  147  clear
+  148  docker ps
+  149  docker exec e973b1f896c5 ls
+  150  docker exec e973b1f896c5 df -kh
+  151  clear
+  152  docker exec e973b1f896c5 ps -eaf
+  153  docker exec -it e973b1f896c5 /bin/bash
+  154  docker ps
+  155  docker start e973b1f896c5
+  156  clear
+  157  ls
+  158  clear
+  159  docker ps
+  160  docker attach e973b1f896c5
+  161  clear
+  162  docker ps -a
+  163  clear
+  164  clear
+  165  docker ps -a
+  166  docker rm e973b1f896c5 12da11490416 9faf1d626ce9 2356ea445f0c f54fab595e0d
+  167  clear
+  168  docker ps -a
+  169  docker run ubuntu
+  170  docker ps
+  171  docker ps -a
+  172  docker run -d ubuntu
+  173  docker ps -a
+  174  /bin/bash
+  175  clear
+  176  docker ps
+  177  ls
+  178  df -kh
+  179  docker ps
+  180  docker ps =a
+  181  clear
+  182  docker ps -a
+  183  docker ps
+  184  docker run ubuntu ls
+  185  docker ps -a
+  186  clear
+  187  docker ps -a
+  188  docker run ubuntu df -kh
+  189  docker ps -a
+  190  clear
+  191  ls
+  192  clear
+  193  clear
+  194  docker ps -a
+  195  clear
+  196  docker run -it ubuntu /bin/bash
+  197  docker run -dit ubuntu /bin/bash
+  198  docker ps
+  199  docker run -dit ubuntu /bin/bash
+  200  docker run -dit ubuntu /bin/bash
+  201  docker ps
+  202  clear
+  203  docker run -d jenkins/jenkins
+  204  docker ps
+  205  dockert attach b9dcc3648f06
+  206  docker attach b9dcc3648f06
+  207  clear
+  208  docker ps
+  209  docker stop f3d99fb8efe2 2d6a03e22e52 c955698eac8a
+  210  docker rm f3d99fb8efe2 2d6a03e22e52 c955698eac8a
+  211  clear
+  212  docker ps -a
+  213  docker rm b9dcc3648f06 b57afb88ac2e d41f2af25fb4 c94032beadef cc5d783f87a9 629ac892295c
+  214  clear
+  215  docker ps -a
+  216  docker run -d jenkins/jenkins
+  217  docker ps
+  218  docker inspect be4134a81802 | grep -i ip
+  219  clear
+  220  ping 172.17.0.2
+  221  curl http://172.17.0.2:8080
+  222  clear
+  223  docker run -d -p 8080:8080 jenkins/jenkins
+  224  docker ps
+  225  clear
+  226  docker ps
+  227  docker run -d -p 8080:8080 jenkins/jenkins
+  228  docker run -d -p 8081:8080 jenkins/jenkins
+  229  docker ps
+  230  history
+
+
+
+ 1  clear
+    2  docker ps
+    3  clear
+    4  docker ps
+    5  clear
+    6  ls
+    7  ps -eaf
+    8  clear
+    9  docker ps
+   10  docker exec 9faf1d626ce9 ps -eaf
+   11  docker ps
+   12  docker ps -a
+   13  clear
+   14  docker ps -a
+   15  ps -eaf
+   16  cleclear
+   17  clear
+   18  history
+
+
+
+
+
+
 
 
 
