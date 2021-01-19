@@ -429,9 +429,30 @@ ENV JAVA_HOME=/opt/java
    88  docker history fromdockerfile
 
 
+jenkins
+	openjdk:8-jdk
+		buildpack-deps:buster-scm
+			buildpack-deps:buster-curl
+					debian:buster
+						scratch
 
 
+ENTRYPOINT VS CMD
+=====================
+How to set PID 1?
+- ENTRYPOINT
+- CMD
 
+ENTRYPOINT VS CMD
+----------------------
+CMD can be replaced.
+ENTRYPOINT can not be replaced.
+
+2 CMD ??
+2 ENTRYPOINT ?? 
+1 CMD 1 ENTRYPOINT??
+
+https://www.devopsschool.com/tutorial/docker/dockerfile/dockerfile-example-sample-lab.html
 
 
 
