@@ -22,3 +22,125 @@ Abhijit Roy
 Ananth P M
 Pranjal Thakuria
 Priyanka Sharma
+================================================================
+COMMANDS - https://www.devopsschool.com/tutorial/docker/commands/index.html
+
+
+cp	Copy files/folders between a container and the local filesystem
+
+	Copy a files/dir from Host machine to Container
+	Copy a files/dir from Container to Host Machine
+
+  21  touch devopsschool.txt
+   22  ls
+   23  docker cp devopsschool.txt 7e9cc6153c15:/opt
+   24  docker exec 7e9cc6153c15 ls /opt
+   25  ls
+   26  rm devopsschool.txt
+   27  lear
+   28  clear
+   29  ls
+   30  docker cp 7e9cc6153c15:/opt/devopsschool.txt
+   31  docker cp 7e9cc6153c15:/opt/devopsschool.txt .
+   32  ls
+   33  clear
+   34  docker help cp
+
+diff	Inspect changes to files or directories on a container's filesystem
+
+	ANY CHANGES in the container -
+			ADDED
+			EDIT
+			DELETED 
+	can be seen by Diff commands.
+
+  38  docker ps
+   39  clear
+   40  docker diff 7e9cc6153c15
+   41  docker attach 7e9cc6153c15
+   42  docker ps
+   43  clear
+   44  docker diff 7e9cc6153c15
+   45  history
+
+   48  docker inspect 7e9cc6153c15
+   49  clear
+   50  docker inspect ubuntu
+   51  clear
+
+
+ 58  docker port 7e9cc6153c15
+   59  docker run -d jenkins/jenkins
+   60  docker ps
+   61  clear
+   62  docker port 947df6219c13
+   63  docker stop $(docker ps -a -q)
+   64  clear
+   65  docker rm $(docker ps -a -q)
+   66  clear
+   67  docker ps
+   68  docker ps -a
+   69  docker run -d -p 8080:8080 jenkins/jenkins
+   70  docker ps
+   71  docker port 286f30aa6304
+   72  docker run -d -p 8081:8080 jenkins/jenkins
+   73  docker port 286f30aa6304
+   74  docker port 4abf38954908834eb002027c861fb6a54f4c2290ed3da60829608d5ee94275a6
+
+
+ 76  clear
+   77  docker ps
+   78  docker rename 4abf38954908 dev1
+   79  docker ps
+   80  docker run -itd --name dev2 ubuntu
+   81  docker ps
+
+
+
+  88  docker stat
+   89  docker stats
+   90  docker stats 4e50a711d395
+   91  docker stats
+   92  docker help stats
+   93  docker stats --no-stream
+   94  clear
+   95  docker help run
+   96  clear
+   97  docker help create
+   98  clear
+
+  105  docker ps
+  106  docker logs 4e50a711d395
+  107  docker logs 4abf38954908
+  108  clear
+  109  docker ps
+  110  docker attach 4e50a711d395
+  111  clear
+  112  docker ps
+  113  docker logs 4e50a711d395
+
+ 115  clear
+  116  docker ps
+  117  ps -eaf | grep containerd
+  118  docker top 4e50a711d395
+  119  history
+
+docker events
+
+Assignment	# docker help
+============
+update	Update configuration of one or more containers
+wait	Block until one or more containers stop, then print their exit codes
+
+
+
+
+
+
+
+
+
+
+
+
+
