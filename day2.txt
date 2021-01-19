@@ -324,15 +324,109 @@ volumes			= Volume
 - When we start a container - Layers of image + Diff dir get merged into merged dir.
 ===================================================================
 
+How to develop a Docker Image?
+=================================
+Method 1 - Manual Way
+		- Use "docker commit"
+		- Require - a Existing Container
+			- One layer at a time.
+
+Method 2 - CI/CD - Automated way
+		- Use "docker build"
+		- Require Dockerfile
+			- Create multiple layer
+
+What is the requirement?
+===========================
+Base - ubuntu			DONE
+---> Update --> GIT --> Apache - COPY index.html 
+
+ 18  docker run -itd ubuntu
+   19  docker ps
+   20  ls
+   21  vi index.html
+   22  docker ps
+   23  clear
+   24  clear
+   25  ls
+   26  docker ps
+   27  docker rename a080b711fdba rajesh2
+   28  clear
+   29  docker ps
+   30  docker attach rajesh2
+   31  clear
+   32  docker ps
+   33  docker attach rajesh2
+   34  docker cp index.html rajesh2:/var/www/html
+   35  docker exec rajesh2 more /var/www/html/index.html
+   36  cleaer
+   37  clear
+   38  docker ps
+   39  docker diff rajesh2
+   40  clear
+   41  ls
+   42  docker ps
+   43  docker commit -m"up-up-git-ap" -a "Rajesh Kumar" a080b711fdba up-up-git-ap
+   44  docker images
+   45  docker history ubuntu
+   46  docker history up-up-git-ap
+   47  clear
+   48  docker ps -a
+   49  docker stop c9ab7c1f6440  a080b711fdba
+   50  docker rm c9ab7c1f6440  a080b711fdba
+   51  docker images
+   52  docker run -itd --name ubuntu ubuntu
+   53  docker run -itd --name up-up-git-ap up-up-git-ap
+   54  docker ps
+   55  clear
+   56  docker ps
+   57  docker exec cca58c3e9f28 git
+   58  docker exec be901cda0cbf git
+   59  clear
+   60  ls
+   61  docker images
+   62  history
 
 
 
 
+INSIDE a container
+---------
+apt-get update
+apt-get install git
+apt-get install apache2
+
+==========================================================
+Dockerfile
+===============================================
+ - Contains 
+	- List of Instructions
+	- Each line create one layer
+	- Each Layer get created from the container of Previous line of Dockerfile
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar rajesh@devopschool.com
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update 
+RUN apt-get -y install tzdata
+RUN apt-get install git -y
+RUN apt-get install apache2 -y
+COPY index.html /var/www/html/
+ENV JAVA_HOME=/opt/java
 
 
-
-
-
+ 77  docker build -t fromdockerfile .
+   78  docker images
+   79  docker rmi 0bf2006cc454
+   80  docker images
+   81  docker run -itd fromdockerfile
+   82  docker ps
+   83  docker exec b72a85e4e057 env
+   84  docker exec b72a85e4e057 ls /var/www/html
+   85  docker exec b72a85e4e057 git
+   86  clear
+   87  docker images
+   88  docker history fromdockerfile
 
 
 
