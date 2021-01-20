@@ -300,6 +300,85 @@ Networking Driver Types
   262  docker ps
   263  ifconfig
 
+======================================================================================
+======================================================================================
+Manual Way using Kubeadm
+===================================
+Master Aka Control Plane
+-----------------------
+API server 	-> POD -> Container -> Docker Image -> Google Registry
+Etcd		-> POD -> Container -> Docker Image -> Google Registry
+Controller Mgr	-> POD -> Container -> Docker Image -> Google Registry
+Schedular	-> POD -> Container -> Docker Image -> Google Registry
+
+Kube Proxy	-> POD -> Container -> Docker Image -> Google Registry	
+Kubelet
+Docker
+Kubectl
+Kubeadm init
+
+
+Worker aka Node
+-----------------------
+Kubelet
+Docker
+Kubectl
+Kube Proxy	-> POD -> Container -> Docker Image -> Google Registry
+Kubeadm join
+
+Work Station - Laptop
+---------------------
+Kubectl
+===========================================
+https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/
+Master + Workstation
+----------------
+35.154.70.236
+centos
+
+
+Worker
+-----------------
+13.235.49.223
+centos
+
+
+
+
+
+
+
+
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 172.31.13.37:6443 --token v2dx9b.2s1xmppwuyn6rshw \
+    --discovery-token-ca-cert-hash sha256:f4ed723be9516818aacf65da9ceae3b53c96d78c49fe2a37fc78f178a85df4e8
+
+
+======================
+POD RC DEP SERVICE STOR
+
+
+
+
+
+
+
 
 
 
