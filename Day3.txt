@@ -217,6 +217,89 @@ https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep
   192  docker exec b7e8e19f6c55 ls /opt/
   193  clear
 
+========================================================
+Docker Networking === Container Networking
+========================================================
+Each Container get 
+		ONE NET NS Assigned - default.
+			More net ns --- YES
+===============================================
+Networking Driver Types
+===============================================
+- Bridge
+- Host Only
+- NONE
+
+
+197  docker exec b7e8e19f6c55 df -kh
+  198  clear
+  199  docker stop $(docker ps -a -q)
+  200  docker rm $(docker ps -a -q)
+  201  clear
+  202  docker ps -a
+  203  clear
+  204  ifconfig
+  205  clear
+  206  docker network ls
+  207  ifconfig
+  208  docker network ls
+  209  clear
+  210  docker network ls
+  211  ifconfig
+  212  clear
+  213  docker run -itd ubuntu
+  214  docker ps
+  215  ifconfig
+  216  docker run -itd ubuntu
+  217  ifconfig
+  218  docker ps
+  219  docker stop 3bab7c37d659
+  220  ifconfig
+  221  clear
+  222  ls
+  223  docker network ls
+  224  docker network
+  225  docker network inspect 2142c2330450
+  226  docker ps
+  227  docker inspect 01fdb8ca3ebe
+  228  clear
+  229  docker network ls
+  230  docker network
+  231  docker network create dev
+  232  clear
+  233  docker network create qa
+  234  docker network ls
+  235  docker inspect eed4f42a7b1e
+  236  clear
+  237  ls
+  238  docker network ls
+  239  docker run -itd --net=dev ubuntu
+  240  docker ps
+  241  docker inspect 2594fe153eae
+  242  docker ps
+  243  clear
+  244  docker network ls
+  245  docker ps
+  246  docker network connect 01fdb8ca3ebe dev
+  247  docker network connect dev 01fdb8ca3ebe
+  248  docker inspect 01fdb8ca3ebe
+  249  docker network disconnect dev 01fdb8ca3ebe
+  250  docker inspect 01fdb8ca3ebe
+  251  clear
+  252  ls
+  253  docker ps
+  254  docker network connect dev 01fdb8ca3ebe
+  255  docker attach 01fdb8ca3ebe
+  256  clear
+
+ 257  ls
+  258  history
+  259  docker network ls
+  260  docker run -itd --net=host ubuntu
+  261  clear
+  262  docker ps
+  263  ifconfig
+
 
 
 
