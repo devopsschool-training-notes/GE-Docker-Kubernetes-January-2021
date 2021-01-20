@@ -100,6 +100,129 @@ Step 7- docker logout
    58  docker push devopsschools/jan2021:v2
    59  docker logout
 
+====================================================
+How to have data persistency BEYOND a lifecycle of the Container.
+---
+Container is deleted -- data of the container should not deleted.
+--------------------------------
+Ans - Volume - Docker Volume
+
+TYPES of DRIVER
+======================
+- volume	= /var/lib/docker/volumes
+- mountfs	= ANY WHERE in the HOST MOUNT
+- tempfs	= memory
+
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+
+ 96  cd /var/lib/docker/volumes/
+   97  ls
+   98  pwd
+   99  clear
+  100  ls
+  101  docker volume
+  102  clear
+  103  docker volume ls
+  104  docker volume create dev
+  105* docker volume l
+  106  ls
+  107  cd dev/
+  108  ls
+  109  cd _data/
+  110  ls
+  111  clear
+  112  cd ../..
+  113  ls
+  114  docker volume create qa
+  115  docker volume rm dev
+  116* l
+  117  docker volume ls
+  118  docker volume prune
+  119  ls
+  120  docker volume prune
+  121  clear
+  122  ls
+  123  history
+ 122  ls
+  123  history
+  124  clear
+  125  docker volume
+  126  clear
+  127  ls
+  128  docker volume create dev
+  129  ls
+  130  docker run -itd -v devubuntu
+  131  clear
+  132  docker run -itd -v dev:/opt/raju ubuntu
+  133  docker ps
+  134  docker exec fef28c222bd9 df -kh
+  135  clear
+  136  docker exec fef28c222bd9 touch /opt/raju/devopsschool.txt
+  137  docker exec fef28c222bd9 ls /opt/raju
+  138  ls
+  139  cd dev/
+  140  clear
+  141  ls
+  142  cd _data/
+  143  ls
+  144  touch docker.txt
+  145  ls
+  146  docker exec fef28c222bd9 ls /opt/raju
+  147  clear
+  148  cd ../..
+  149  ls
+  150  docker run -itd -v dev:/tmp/raju ubuntu
+  151  docker ps
+  152  docker exec 4543a8c0ccd4 df -kh
+  153  docker exec 4543a8c0ccd4 ls /tmp/raju
+  154  clear
+  155  ls
+
+ 156  history
+  157  cleart
+  158  clear
+  159  ls
+  160  docker ps
+  161  dockers stop 4543a8c0ccd4 fef28c222bd9
+  162  dockers rm 4543a8c0ccd4 fef28c222bd9
+  163  docker rm 4543a8c0ccd4 fef28c222bd9
+  164  cear
+  165  clear
+  166  docker stop 4543a8c0ccd4 fef28c222bd9
+  167  docker rm 4543a8c0ccd4 fef28c222bd9
+  168  docker ps -a
+  169  clear
+  170  ls
+  171  cd dev/
+  172  ls
+  173  cd _data/
+  174  ls
+  175  pwd
+  176  ls
+  177  cd /opt/
+  178  clear
+  179  ls
+  180  mkdir backup
+  181  cd backup/
+  182  pwd
+  183  docker run -itd -v /opt/backup:/opt/rajesh ubuntu
+  184  docker ps
+  185  docker exec 979e4e599046 df -kh
+  186  clear
+  187  docker run -itd -v /opt/backup:/opt/rajesh -v dev:/tmp/ddd ubuntu
+  188  docker ps
+  189  docker exec b7e8e19f6c55 /tmp/
+  190  docker exec b7e8e19f6c55 ls/tmp/
+  191  docker exec b7e8e19f6c55 ls /tmp/
+  192  docker exec b7e8e19f6c55 ls /opt/
+  193  clear
+
+
+
+
+
+
+
 
 
 
