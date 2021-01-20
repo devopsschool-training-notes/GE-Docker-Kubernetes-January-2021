@@ -1,0 +1,109 @@
+13.233.201.13
+centos
+centos123
+========================
+https://www.devopsschool.com/tutorial/docker/commands/index.html
+
+Docker Commands - Working with Registry/Repository
+-----------------
+Command	Description
+login	Log in to a Docker registry
+logout	Log out from a Docker registry
+pull	Pull an image or a repository from a registry
+push	Push an image or a repository to a registry
+search	Search the Docker Hub for images
+------------------------
+Docker Volume
+
+Docker networking
+
+Docker Compose
+
+Kubernetes
+=====================================================
+How to share your developed image?
+
+- Using Tar Ball
+
+ 15  docker images
+   16  docker save -o first.tar first
+   17  ls
+   18  docker rmi first
+   19  clear
+   20  docker images
+   21  ls
+   22  docker load -i first.tar
+   23  docker images
+   24  clear
+   25  ls
+   26  docker images
+   27  docker run -itd first
+   28  docker
+   29  clear
+   30  docker ps
+
+
+- Using Registry
+	- PUBLIC
+		hub.docker.com		DONE
+		google registry
+		Azure repos
+		ECR
+
+	- PRIVATE - Hosted
+		Artifactory
+		nexus
+		Docker Registry
+
+hub.docker.com
+---------------------
+Step 1- Register and verify your free account @hub.docker.com [ 1 PVT REPO + UNLIMUTED PUB REPO]
+Step 2- Create a EMPTRY repos @hub.docker.com
+Step 3- Create one image in local
+Step 4- Make sure that Name of repos@hub.docker.com ==== name of repo @local
+Step 5- docker login
+Step 6- docker push imagename
+Step 7- docker logout
+
+ 26  docker images
+   27  docker run -itd first
+   28  docker
+   29  clear
+   30  docker ps
+   31  history
+   32  clear
+   33  docker images
+   34  clear
+   35  ls
+   36  docker images
+   37  docker tag first devopsschools/jan2021
+   38  docker images
+   39  docker login
+   40  docker info
+   41  clear
+   42  docker login
+   43  docker images
+   44  docker login
+   45  more /root/.docker/config.json.
+   46  more /root/.docker/config.json
+   47  clear
+   48  ls
+   49  more /root/.docker/config.jsonclear
+   50  clear
+   51  ls
+   52  docker images
+   53  docker push devopsschools/jan2021
+   54  clear
+   55  docker images
+   56  docker tag devopsschools/jan2021 devopsschools/jan2021:v2
+   57  docker images
+   58  docker push devopsschools/jan2021:v2
+   59  docker logout
+
+
+
+
+
+
+
+
