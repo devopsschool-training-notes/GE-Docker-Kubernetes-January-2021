@@ -1,0 +1,291 @@
+MASTER + Workstation = 13.233.137.177
+Worker = 65.0.105.230
+====================================
+
+
+ 
+Chennakeshava	35.154.79.198
+Susil		15.206.90.54
+Shreyash	13.234.30.28
+Indhu		15.206.185.76
+Pranjal		13.232.209.163
+Vinay		13.233.3.8
+Alwin		65.0.122.43
+Banala		13.232.75.184
+Ajith		15.207.19.208
+
+WORKER
+-------------------------------
+Chennakeshava	15.206.173.114
+Susil		13.233.31.207	
+Shreyash	13.127.153.68	
+Indhu		52.66.31.26	
+Pranjal		13.233.238.138	
+Vinay		65.0.133.90
+Alwin		13.234.111.83	
+Banala		13.127.22.241	
+Ajith		13.235.50.226	
+
+
+#Jayaprasad
+==============
+13.232.176.149
+65.0.124.45
+
+==================================
+13.233.137.177
+
+============================================
+How kubectl work in Workstation?
+Getting Comfortable with Kubectl
+--------------------------------
+What is Namespace?
+How to work with Namespace?
+--------------------------------
+What is POD
+How to work with Pod?
+Deep Dive into a POD?
+--------------------------------
+ReplicationController
+
+=========================
+How kubectl work in Workstation?
+
+kubectl 
+	$USER_HOME/.kube/config(yaml)
+
+How Kubectl get AUTHORZIED and Authentication to API server
+	- Authentication == Certificate
+	- Authorization == RBAC
+
+What is the content for config file?
+---------------------------------
+Clustor(S):
+	Clustor1: http:/ip/ofapi
+	Clustor2: http:/ip/ofapi
+	Clustor3: http:/ip/ofapi
+	Clustor4: http:/ip/ofapi
+User(S):
+	user1: key+cert
+	user2: key+cert
+	user3: key+cert
+Context(S)
+	Context1 = Clustor1 + user3	
+	Context2 = Clustor2 + user2	
+	Context3 = Clustor3 + user1	
+curr-context = Context2
+==========================================================
+Getting Comfortable with Kubectl
+==========================================================
+
+[centos@ip-172-31-13-37 ~]$ kubectl
+kubectl controls the Kubernetes cluster manager.
+
+ Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
+
+Basic Commands (Beginner):
+  create        Create a resource from a file or from stdin.
+  expose        Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service
+  run           Run a particular image on the cluster
+  set           Set specific features on objects
+
+Basic Commands (Intermediate):
+  explain       Documentation of resources
+  get           Display one or many resources
+  edit          Edit a resource on the server
+  delete        Delete resources by filenames, stdin, resources and names, or by resources and label selector
+
+Deploy Commands:
+  rollout       Manage the rollout of a resource
+  scale         Set a new size for a Deployment, ReplicaSet or Replication Controller
+  autoscale     Auto-scale a Deployment, ReplicaSet, or ReplicationController
+
+Cluster Management Commands:
+  certificate   Modify certificate resources.
+  cluster-info  Display cluster info
+  top           Display Resource (CPU/Memory/Storage) usage.
+  cordon        Mark node as unschedulable
+  uncordon      Mark node as schedulable
+  drain         Drain node in preparation for maintenance
+  taint         Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  proxy         Run a proxy to the Kubernetes API server
+  cp            Copy files and directories to and from containers.
+  auth          Inspect authorization
+  debug         Create debugging sessions for troubleshooting workloads and nodes
+
+Advanced Commands:
+  diff          Diff live version against would-be applied version
+  apply         Apply a configuration to a resource by filename or stdin
+  patch         Update field(s) of a resource
+  replace       Replace a resource by filename or stdin
+  wait          Experimental: Wait for a specific condition on one or many resources.
+  kustomize     Build a kustomization target from a directory or a remote url.
+
+Settings Commands:
+  label         Update the labels on a resource
+  annotate      Update the annotations on a resource
+  completion    Output shell completion code for the specified shell (bash or zsh)
+
+Other Commands:
+  api-resources Print the supported API resources on the server
+  api-versions  Print the supported API versions on the server, in the form of "group/version"
+  config        Modify kubeconfig files
+  plugin        Provides utilities for interacting with plugins.
+  version       Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+
+Use "kubectl <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+[centos@ip-172-31-13-37 ~]$ kubectl api-resources
+NAME                              SHORTNAMES   APIVERSION                             NAMESPACED   KIND
+bindings                                       v1                                     true         Binding
+componentstatuses                 cs           v1                                     false        ComponentStatus
+configmaps                        cm           v1                                     true         ConfigMap
+endpoints                         ep           v1                                     true         Endpoints
+events                            ev           v1                                     true         Event
+limitranges                       limits       v1                                     true         LimitRange
+namespaces                        ns           v1                                     false        Namespace
+nodes                             no           v1                                     false        Node
+persistentvolumeclaims            pvc          v1                                     true         PersistentVolumeClaim
+persistentvolumes                 pv           v1                                     false        PersistentVolume
+pods                              po           v1                                     true         Pod
+podtemplates                                   v1                                     true         PodTemplate
+replicationcontrollers            rc           v1                                     true         ReplicationController
+resourcequotas                    quota        v1                                     true         ResourceQuota
+secrets                                        v1                                     true         Secret
+serviceaccounts                   sa           v1                                     true         ServiceAccount
+services                          svc          v1                                     true         Service
+mutatingwebhookconfigurations                  admissionregistration.k8s.io/v1        false        MutatingWebhookConfiguration
+validatingwebhookconfigurations                admissionregistration.k8s.io/v1        false        ValidatingWebhookConfiguration
+customresourcedefinitions         crd,crds     apiextensions.k8s.io/v1                false        CustomResourceDefinition
+apiservices                                    apiregistration.k8s.io/v1              false        APIService
+controllerrevisions                            apps/v1                                true         ControllerRevision
+daemonsets                        ds           apps/v1                                true         DaemonSet
+deployments                       deploy       apps/v1                                true         Deployment
+replicasets                       rs           apps/v1                                true         ReplicaSet
+statefulsets                      sts          apps/v1                                true         StatefulSet
+tokenreviews                                   authentication.k8s.io/v1               false        TokenReview
+localsubjectaccessreviews                      authorization.k8s.io/v1                true         LocalSubjectAccessReview
+selfsubjectaccessreviews                       authorization.k8s.io/v1                false        SelfSubjectAccessReview
+selfsubjectrulesreviews                        authorization.k8s.io/v1                false        SelfSubjectRulesReview
+subjectaccessreviews                           authorization.k8s.io/v1                false        SubjectAccessReview
+horizontalpodautoscalers          hpa          autoscaling/v1                         true         HorizontalPodAutoscaler
+cronjobs                          cj           batch/v1beta1                          true         CronJob
+jobs                                           batch/v1                               true         Job
+certificatesigningrequests        csr          certificates.k8s.io/v1                 false        CertificateSigningRequest
+leases                                         coordination.k8s.io/v1                 true         Lease
+endpointslices                                 discovery.k8s.io/v1beta1               true         EndpointSlice
+events                            ev           events.k8s.io/v1                       true         Event
+ingresses                         ing          extensions/v1beta1                     true         Ingress
+flowschemas                                    flowcontrol.apiserver.k8s.io/v1beta1   false        FlowSchema
+prioritylevelconfigurations                    flowcontrol.apiserver.k8s.io/v1beta1   false        PriorityLevelConfiguration
+ingressclasses                                 networking.k8s.io/v1                   false        IngressClass
+ingresses                         ing          networking.k8s.io/v1                   true         Ingress
+networkpolicies                   netpol       networking.k8s.io/v1                   true         NetworkPolicy
+runtimeclasses                                 node.k8s.io/v1                         false        RuntimeClass
+poddisruptionbudgets              pdb          policy/v1beta1                         true         PodDisruptionBudget
+podsecuritypolicies               psp          policy/v1beta1                         false        PodSecurityPolicy
+clusterrolebindings                            rbac.authorization.k8s.io/v1           false        ClusterRoleBinding
+clusterroles                                   rbac.authorization.k8s.io/v1           false        ClusterRole
+rolebindings                                   rbac.authorization.k8s.io/v1           true         RoleBinding
+roles                                          rbac.authorization.k8s.io/v1           true         Role
+priorityclasses                   pc           scheduling.k8s.io/v1                   false        PriorityClass
+csidrivers                                     storage.k8s.io/v1                      false        CSIDriver
+csinodes                                       storage.k8s.io/v1                      false        CSINode
+storageclasses                    sc           storage.k8s.io/v1                      false        StorageClass
+volumeattachments                              storage.k8s.io/v1                      false        VolumeAttachment
+
+
+
+11  kubectl get nodes
+   12  kubectl get pods --all-namespaces
+   13  clear
+   14  kubectl get nodes
+   15  clear
+   16  kubectl get nodes
+   17  sudo -s
+   18  more ~/.kube/config
+   19  clear
+   20  kubectl config
+   21  kubectl config view
+   22  clear
+   23  kubectl
+   24  clear
+   25  kubectl
+   26  clear
+   27* kubectl
+   28* kubectl plane is running at https://172.31.13.37:644
+   29  KubeDNS is running at https://
+   30  kubectl api-resources
+   31  kubectl api-resources | wc -l
+   32  kubectl api-resources
+   33  kubectl api-versions
+   34  kubectl api-resources
+   35  clear
+   36  kubectl get ns
+   37  kubectl get pods -n=kube-system
+   38  history
+========================================================================
+How to work with API???
+	CRUD - GET - PUT - POST - DELETE
+	
+	CREATE
+		CMD
+			create
+		YAML
+			create yaml
+	READ
+		CMD
+			get
+		YAML
+
+	UPDATE
+		CMD
+			edit
+		YAML
+			apply yaml
+	DELETE 
+		CMD
+			delete
+		YAML
+			delete yaml
+=========================================================================
+Namespace
+Pod
+ReplicationController
+Deployment
+Services
+Storage
+RBAC
+==============================================
+
+
+  39  clear
+   40  kubectl
+   41  clear
+   42  kubectl -h
+   43  clear
+   44  kubectl create -h
+   45  kubectl create ns -h
+   46  history
+   47  kubectl create ns -h
+   48  clear
+   49  kubectl create namespace dev
+   50  kubectl create namespace qa
+   51  kubectl get -h
+   52  clear
+   53  kubectl get ns
+   54  kubectl edit ns dev
+   55  kubectl delete ns dev
+   56  kubectl get ns
+
