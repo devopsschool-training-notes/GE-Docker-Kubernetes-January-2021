@@ -428,8 +428,78 @@ Troubleshooting and Debugging Commands:
   162  kubectl auth can-i create deploy
   163  kubectl auth can-i create services
   164  kubectl auth can-i create node
+===============================================================
+Replication Controller
+=======================================
+Replication 	You can replicate POD to many.
+Controller	== Make sure the Desire# of POds === Actual Number
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas: 2   
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-ctr
+        image: scmgalaxy/nginx-devopsschoolv1
+        ports:
+        - containerPort: 80
 
 
+ 165  history
+  166  clear
+  167  kubectl create -h
+  168  clear
+  169  ls
+  170  vi rc.yaml
+  171  kubectl create -f rc.yaml -n=rajesh
+  172  kubectl get pods
+  173  kubectl get pods -n=rajesh
+  174  kubectl describe rc hello-rc -n=rajesh
+  175  kubectl get pod -n=rajesh
+  176  kubectl describe pod hello-pod -n=rajesh
+  177  kubectl get pod -n=rajesh
+  178  kubectl describe pod hello-rc-6c2mz -n=rajesh
+  179  clear
+  180  kubectl describe rc hello-rc -n=rajesh
+  181  kubectl edit rc hello-rc -n=rajesh
+  182  kubectl get pod -n=rajesh
+  183  clear
+  184  vi rc.yaml
+  185  kubectl -f rc.yaml -n=rajesh
+  186  kubectl apply -f rc.yaml -n=rajesh
+  187  kubectl get pod -n=rajesh
+  188  clear
+  189  ls
+  190  kubectl get pods -n=rajesh
+  191  kubectl delete pod hello-rc-dgscx hello-rc-6c2mz -n=rajesh
+  192  kubectl get pods -n=rajesh
+  193  history
+	
+ 196  cleaer
+  197  clear
+  198  kubectl explain node
+  199  clear
+  200  kubectl explain node.spec
+  201  kubectl explain node.spec.taints
+  202  clear
+  203  kubectl explain pod
+  204  kubectl explain pod.spec
+  205  kubectl explain pod.spec.containers
+  206  clear
+  207  kubectl explain rc
+  208  kubectl explain rc.spec
+  209  kubectl explain rc.spec.template
+  210  kubectl explain rc.spec.template.spec
+  211  kubectl explain ns
+  212  kubectl explain ns.spec
+  213  history
 
 
 
