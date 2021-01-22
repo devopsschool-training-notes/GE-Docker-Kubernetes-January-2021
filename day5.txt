@@ -1,0 +1,296 @@
+13.233.69.216
+15.207.111.151
+=======================
+http://www.devopsschool.com/blog/devopsschool-github-referenece/
+-----------------------------
+Deployment
+=======================
+ReplicationController => ReplicaSets
+			 == RC ++++ >> RS
+
+feature of deployment
+========================================
+-- Replication + Controller
+=============================
+	ReplicaSets
+
+- Rollout New Version of Image
+	Strategy
+- Versioning - In Built
+- Rollback  
+========================================
+If you want to deploy Multiple Pods in k8s - deployment
+
+How to get POD?
+-- pod
+-- RC
+-- RS
+-- Deployment	====== STATELESS APP
+-- DeamonSets
+	-- Deploy at max & at least 1 POD and in Each & Every Node.
+	-- kube-proxy
+	-- weavenet
+-- Statefulsets	====== STATEFUL APP
+	-- Can deploy pod like deployment
+	-- POD name has certain pattern
+	-- ONE POD get attached to ONE Storage and always remember
+	-- Always create a seq
+	-- Delete create a seq
+
+Image
+---------------
+scmgalaxy/nginx-devopsschoolv1
+scmgalaxy/nginx-devopsschoolv2
+
+kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1
+
+kubectl scale --replicas=3 deployment/my-dep
+
+========================
+ 588  clear
+  589  kubectl get ds
+  590  kubectl get ds --all-namespaces
+  591  kubectl get nodes
+  592  clear
+  593  kubectl create -h
+  594  clear
+  595  kubectl create deployment -h
+  596  clear
+  597  ls
+  598  cd rajesh/
+  599  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1
+  600  kubectl get deploy
+  601  kubectl get pods
+  602  kubectl delete rc jp-rc
+  603  kubectl delete rc hello-rc
+  604  clear
+  605  kubectl get pods
+  606  kubectl delete rc hello-rc-shiji
+  607  clear
+  608  kubectl get pods
+  609  kubectl get deploy
+  610  kubectl edit deploy my-dep
+  611  kubectl get deploy
+  612  kubectl get pods -o wide
+  613  curl http://10.44.0.26
+  614  curl http://10.44.0.14
+  615  clear
+  616  ls
+  617  kubectl
+  618  clear
+  619  kubectl scale -h
+  620  clear
+  621  kubectl get pods -o wide
+  622  kubectl scale --replicas=4 deployment/my-dep
+  623  kubectl get pods -o wide
+  624  kubectl scale --replicas=1 deployment/my-dep
+  625  kubectl get pods -o wide
+  626  clear
+  627  kubectl get pods -o wide
+  628  clear
+  629  kubectl scale --replicas=4 deployment/my-dep
+  630  kubectl get pods -o wide
+  631  clear
+  632  kubectl get pods -o wide
+  633  kubectl delete pod my-dep-747b4ffb56-5wtcs my-dep-747b4ffb56-bfgb6 my-dep-747b4ffb56-ggpgn my-dep-747b4ffb56-kwmxw
+  634  kubectl get pods -o wide
+  635  clear
+  636  kubectl get deploy
+  637  kubectl describe deploy my-dep
+  638  kubectl get rs
+  639  kubectl describe rs my-dep-747b4ffb56
+  640  kubectl get pods -o wide
+  641  kubectl describe pod my-dep-747b4ffb56-jrcw4
+  642  clear
+  643  kubectl get pods
+  644  kubectl delete pod hello-pod-pp
+  645  kubectl delete pod hello-pod-shiji jp-pod
+  646  kubectl get pods --all-namespaces
+  647  kubectl delete ns abhijit atul rajesh shiji pp
+  648  kubectl get pods --all-namespaces
+  649  clear
+  650  kubectl get pods
+  651  kubectl get pods -o wide
+  652  curl http://10.44.0.18
+  653  kubectl edit deploy my-dep
+  654  kubectl get pods -o wide
+  655  curl http://10.44.0.1
+  656  clear
+  657  curl http://10.44.0.1
+  658  kubectl edit deploy my-dep
+  659  clear
+  660  kubectl get pods -o wide
+  661  clear
+  662  kubectl get pods -o wide
+  663  clear
+  664  kubectl get pods -o wide
+  665  curl http://10.44.0.2
+  666  clear
+  667  kubectl explain.deploy.spec
+  668  kubectl explain deploy.spec
+  669  clear
+  670  ls
+  671  kubectl get deploy
+  672  kubectl describe deploy my-dep
+  673  clear
+  674  history
+=======================================================
+
+kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1
+kubectl scale --replicas=10 deployment/my-dep
+kubectl rollout status deploy/my-dep 
+kubectl rollout history deploy/my-dep
+kubectl edit deployment my-dep #scmgalaxy/nginx-devopsschoolv2
+kubectl rollout status deploy/my-dep 
+kubectl rollout history deploy/my-dep
+kubectl rollout undo deploy/my-dep --to-revision=1
+
+ 674  history
+  675  clear
+  676  kubectl get deploy
+  677  kubectl delete deploy my-dep
+  678  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1
+  679  kubectl scale --replicas=10 deployment/my-dep
+  680  kubectl rollout status deploy/my-dep
+  681  kubectl rollout history deploy/my-dep
+  682  clear]
+  683  clear
+  684  kubectl get pods -o wide
+  685  clear
+  686  curl http://10.44.0.5
+  687  kubectl edit deployment my-dep
+  688  kubectl rollout status deploy/my-dep
+  689  clear
+  690  kubectl rollout status deploy/my-dep
+  691  kubectl rollout history deploy/my-dep
+  692  kubectl get pods -o wide
+  693  curl http://10.44.0.12
+  694  clear
+  695  kubectl rollout undo deploy/my-dep --to-revision=1
+  696  kubectl rollout status deploy/my-dep
+  697  clear
+  698  ls
+  699  kubectl get pods -o wide
+  700  curl http://10.44.0.4
+  701  history
+
+====================================================================================
+====================================================================================
+Services?
+	- What is services?
+	- How services work?
+	- Types of services?
+	- Working with services?
+=======================================
+How to access Pod(S)
+		-- Internal (inside a clustor)
+		-- external 
+
+LoadBalancer
+	- Network LB	===== services
+			- Network layer ip - port
+	- Application LB	==== ingress
+			- path based - name based
+
+
+- Types of services?
+	- ClustorIP 
+			- This services would loadbalance POD	
+			- Scope is Clustor Only
+	- NodePort
+			- One ClustorIP service get created 
+			- Same service - Port- forward to each NODE
+	- LoadBalancer
+			- One ClustorIP service get created
+			- Same service - Port- forward to each NODE
+			- Talk to Cloud and Create Phsycial LB		- FAILED
+			- Add all the k8s Nodes to Phsycial LB		- FAILED
+	- ExternalIP
+=====================================================================
+=====================================================================
+
+ 702  kubectl get pods --all-namespaces
+  703  clear
+  704  ls
+  705  cp pod1.yaml
+  706  cp pod.yaml pod.yaml
+  707  cp pod.yaml pod2.yaml
+  708  clear
+  709  ls
+  710  cp pod.yaml pod1.yaml
+  711  ls
+  712  clear
+  713  ls
+  714  vi pod1.yaml
+  715  vi pod2.yaml
+  716  clear
+  717  ls
+  718  kubectl create -f pod1.yaml
+  719  kubectl create -f pod2.yaml
+  720  clear
+  721  kubectl get pod -o wide --show-labels
+  722  kubectl delete deploy my-dep
+  723  clear
+  724  kubectl delete deploy my-dep
+  725  kubectl get pod -o wide --show-labels
+  726  clear
+  727  kubectl get pod -o wide --show-labels
+  728  clear
+  729  kubectl get pod -o wide --show-labels
+  730  clear
+  731  kubectl get pod -o wide --show-labels
+  732  clear
+  733  kubectl get pod -o wide --show-labels
+  734  clear
+  735  kubectl get pod -o wide --show-labels
+  736  curl http://10.44.0.9
+  737  curl http://10.44.0.10
+  738  kubectl create service -h
+  739  clear
+  740  kubectl create service clusterip -h
+  741  clear
+  742  kubectl create service -h
+  743  kubectl create service clusterip -h
+  744  clear
+  745  kubectl create service clusterip my-cs --tcp=5678:80
+  746  kubectl get svc
+  747  kubectl describe svc my-cs
+  748  kubectl get pod -o wide --show-labels
+  749  kubectl edit svc my-cs
+  750  clear
+  751  kubectl get pod -o wide --show-labels;kubectl get svc --show-labels
+  752  kubectl describe svc my-cs
+  753  kubectl edit svc my-cs
+  754  kubectl describe svc my-cs
+  755  curl http://10.102.52.56:5678
+  756  clear
+  757  watch curl http://10.102.52.56:5678
+  758  clesr
+  759  clear
+  760  kubectl create service -h
+  761  kubectl create service nodeport -h
+  762  clear
+  763  kubectl create service nodeport my-ns --tcp=5678:80
+  764  kubectl get svc
+  765  kubectl describe svc my-ns
+  766  kubectl get pod -o wide --show-labels;kubectl get svc --show-labels
+  767  kubectl edit svc my-ns
+  768  clear
+  769  kubectl describe svc my-ns
+  770  kubectl get svc
+  771  curl http://10.105.89.197:5678
+  772  clear
+  773  watch curl http://13.233.69.216:31592/
+  774  history
+
+
+kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1
+kubectl scale --replicas=10 deployment/my-dep
+kubectl expose deployment/my-dep --port=80 --target-port=80 --type=LoadBalancer
+
+
+
+
+
+
+
