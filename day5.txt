@@ -466,6 +466,142 @@ roleRef:
   657  kubectl --context=employee-context get pods
   658  kubectl --context=employee-context get svc
   659  history
+==========================================================================================
+==========================================================================================
+helm
+-----------------------------
+	Package Manager
+	--------------------
+	yum - apt-get - nuget - Google play
+
+  662  yum install wget -y
+  663  sudo yum install wget -y
+  664  clear
+  665  ls
+  666  wget https://get.helm.sh/helm-v3.5.0-linux-amd64.tar.gz
+  667  ls
+  668  tar -zxvf helm-v3.5.0-linux-amd64.tar.gz
+  669  clear
+  670  ls
+  671  cd linux-amd64
+  672  ls
+  673  echo $PATH
+  674  sudo mv helm /usr/local/bin
+  675  helm
+  676  history
+
+
+
+Package  ======= Chart in K8s
+	--------> https://artifacthub.io/
+=============================================================================
+Jobs
+	Would do somthing.
+	API Resources
+	A Job creates one or more Pods and ensures that a specified number of them successfully terminate.
+	
+CronJob
+
+
+
+
+pods=$(kubectl get pods --selector=job-name=pi --output=jsonpath='{.items[*].metadata.name}')
+echo $pods
+
+=====================================================================================
+=====================================================================================
+=====================================================================================
+ELK at K8s
+Prom @ k8s
+=============================================
+Obserbablity = EVERYTHING
+= LOG Monitoring		===???
+= INFRA Monitoring		===???
+= Perforamnce Monitoring
+= Synthetic M
+= RUM
+= Browsers
+============================================
+ELK for Log Monitoring
+	= ElasticSearch		=== Storage for the Logs
+	= LogStash		=== Log Parser
+	= Kibana		=== Dashboard & Alerts
+	= Beats			=== Log Collector
+
+BEAT ==> LogStash => ElasticSearch <<==== Kibana
+						- Reports
+						- Dashboard
+						- Alerts			
+
+Prometheus for Infra Moniotring
+	= Prometheus Server
+	= Exporters
+	= Client Lib
+	= Alert Manager	- Prometheus  in built
+	= Push mgr
+	= Grafana
+
+Server
+    - Exporters Publish the LOG @ One URL  <<<< ======= Prometheus Server << ==== Grafana
+			----------------------------------
+					@Interval
+										- Reports
+										- Dashboard
+										- Alerts
+Code instrument using Client Lib and Publish the LOG @ One URL <<<< ======= Prometheus Server << ==== Grafana
+			----------------------------------
+					@Interval
+										- Reports
+										- Dashboard
+										- Alerts
+
+===========================================================================
+What Kind of Data you have in k8s clustor?
+---------------------------------------------
+Node Infra -- 
+Pod  Infra  Data
+Kubelet log
+Docker Deamon Log
+Service Log
+Api server Log
+1
+
+Docker COmpose
+https://www.youtube.com/c/TheDevOpsSchool/search?query=docker%20compose
+==============================================================================
+There are some info - 
+	key: value 
+		Store in ETCD - Clustor
+	==================================
+	ConfigMaps
+	-- is visible
+
+	Secret
+	--- encoded
+https://www.devopsschool.com/kit/master-in-devops-engineering.html
+
+- www.Rajeshkumar.xyz
+- rajesh@devopsschool.com
+	- DevOps
+	- DevSecOps
+	- SRE
+	- Ops
+	- MS
+	- Cloud
+	- Container
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
