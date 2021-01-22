@@ -289,6 +289,201 @@ kubectl scale --replicas=10 deployment/my-dep
 kubectl expose deployment/my-dep --port=80 --target-port=80 --type=LoadBalancer
 
 
+======================================================================
+======================================================================
+
+Kubernetes Storage
+=========================
+
+
+Storage Tech
+=====================================
+Block Storage
+	- Host Based
+	- External Host Based
+Object Storage
+	- AWS S3
+	- Git repo
+	- Azure file
+Network Storage
+	- NFS
+	- EFS
+=============================================
+Problem with Pods?
+------------------
+	Emph* - One gone - You wont get the data back.
+
+We want data persistency...
+================================================
+kubernetes volume
+	- Types
+
+awsElasticBlockStore - AWS Elastic Block Store (EBS)
+azureDisk - Azure Disk
+azureFile - Azure File
+cephfs - CephFS volume
+cinder - Cinder (OpenStack block storage) (deprecated)
+csi - Container Storage Interface (CSI)
+fc - Fibre Channel (FC) storage
+flexVolume - FlexVolume
+flocker - Flocker storage
+gcePersistentDisk - GCE Persistent Disk
+glusterfs - Glusterfs volume
+hostPath - HostPath volume (for single node testing only; WILL NOT WORK in a multi-node cluster; consider using local volume instead)
+iscsi - iSCSI (SCSI over IP) storage
+local - local storage devices mounted on nodes.
+nfs - Network File System (NFS) storage
+photonPersistentDisk - Photon controller persistent disk. (This volume type no longer works since the removal of the corresponding cloud provider.)
+portworxVolume - Portworx volume
+quobyte - Quobyte volume
+rbd - Rados Block Device (RBD) volume
+scaleIO - ScaleIO volume (deprecated)
+storageos - StorageOS volume
+vsphereVolume - vSphere VMDK volume
+Persistent Volumes
+
+============================================================================
+How to Register STORAGE at k8s for the pODS?
+=============================================
+Static 
+	Register early before using in the POD.
+	PV --> PVC --> Bind in the POD
+	-------------------------------------
+
+Dynamic
+	Register only when request is by made by the POD.
+	StorageClass -> PV -> PVC --> Bind in the POD
+=============================================================
+		DONE by Admin of K8s
+	
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+==============================================================================
+==============================================================================
+Authentication and Authorization
+==============================================================================
+Authentication = How to login to Kubernetes (API Server)
+- X509 Client Certs			= by US default
+- Bootstrap Tokens			= By Node
+- OpenID Connect Tokens
+- Webhook Token Authentication
+
+Authorization = What you are allowed to do?
+- Node Authorization
+- ABAC - Attribute-based access control (ABAC) 
+- RBAC - Role-based access control (RBAC) (Default)
+- Webhook
+
+Give a ACCESS TO WHOM?  Kind of User
+=========================================
+Normal User	|   Service Account
+-----------------------------------------
+ME|YOU		|   a user for which is being used internally
+================================================
+		GROUP
+		Multiple USER
+
+What Access?
+get, list, create, update, patch, watch, delete, and deletecollection 
+--------------------------------------------------------------------
+			on???
+--------------------------------------------------------------------
+		API Resources or API GROUP
+
+
+
+Step 1 - Create a Normal user
+Step 2 - Create ROLE or ClustorRole
+Step 3 - Add a Normal user to ROLE or ClustorRole using RoleBinding or ClustorRoleBinding
+
+
+kubectl config set-credentials employee --client-certificate=/home/centos/employee.crt  --client-key=/home/centos/employee.key
+
+kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+
+
+kubectl --context=employee-context get pods
+
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: office
+  name: deployment-manager
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"] # You can also use ["*"]
+
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: deployment-manager-binding
+  namespace: office
+subjects:
+- kind: User
+  name: employee
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: deployment-manager
+  apiGroup: ""
+
+
+
+  625  pwd
+  626  ls
+  627  clear
+  628  kubectl create namespace office
+  629  cd
+  630  ls
+  631  pwd
+  632  openssl genrsa -out employee.key 2048
+  633  ls
+  634  openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=bitnami"
+  635  ls
+  636  pwd
+  637  sudo openssl x509 -req -in employee.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out /home/centos/employee.crt -days 500
+  638  clear
+  639  ls
+  640  rm -rf employee.csr
+  641  ls
+  642  pwd
+  643  kubectl config set-credentials employee --client-certificate=/home/centos/employee.crt  --client-key=/home/centos/employee.key
+  644  kubectl config view
+  645  clear
+  646  kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+  647  kubectl config view
+  648  clear
+  649  kubectl --context=employee-context get pods
+  650  vi rb1.yaml
+  651  kubectl get roles
+  652  kubectl create -f rb1.yaml
+  653  kubectl get roles
+  654  kubectl get roles -n=office
+  655  vi rb2.yaml
+  656  kubectl create -f rb2.yaml
+  657  kubectl --context=employee-context get pods
+  658  kubectl --context=employee-context get svc
+  659  history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
